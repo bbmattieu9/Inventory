@@ -78,22 +78,43 @@ body {
 .lh-125 { line-height: 1.25; }
 .lh-150 { line-height: 1.5; }
 
-a.nav-link.active {
+/* a.nav-link.active {
   color: #6f42c1 !important;
   font-size: medium;
   border-bottom: 2px solid var(--purple);
-}
+} */
 
-.navbar-default .navbar-nav > li > a {
+/* .navbar-default .navbar-nav > li > a {
   color: #6f42c1;
   font-size: 15px;
   font-weight: 500;
-}
+} */
 
 .table thead th {
   vertical-align: bottom;
   border-bottom: 2px solid #dee2e6;
   color: #6f42c1 !important;
+}
+
+.btn-lg.btn-primary {
+  border: 1px solid #6f42c1;
+  background-color: #6f42c1;
+  color: #fff;
+  box-shadow: 2px 2px 2px #6f42c1b8;
+}
+
+.btn-lg.btn-primary:hover {
+  border: 1px solid #6f42c1;
+  background-color: #fff;
+  color: #6f42c1;
+  box-shadow: 2px 2px 2px #6f42c1b8;
+}
+
+.btn-lg.btn-outline-primary {
+  border: 1px solid #6f42c1;
+  background-color: #fff;
+  color: #6f42c1;
+  box-shadow: 2px 2px 2px #6f42c1b8;
 }
 
 
