@@ -16,6 +16,7 @@ import { PageNotFoundComponent } from './home/page-not-found.component';
 
 /* Feature Modules */
 import { UserModule } from './user/user.module';
+// import { CriteriaComponent } from './criteria/criteria.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { UserModule } from './user/user.module';
     ShellComponent,
     MenuComponent,
     WelcomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    // CriteriaComponent
   ],
   bootstrap: [ AppComponent ]
 })

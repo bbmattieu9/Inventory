@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { IProduct } from './product';
 import { ProductService } from './product.service';
@@ -7,7 +7,7 @@ import { ProductService } from './product.service';
     templateUrl: './product-list.component.html',
     styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit, AfterViewInit {
+export class ProductListComponent implements OnInit {
     pageTitle: string = 'Product List';
     showImage: boolean;
 
@@ -17,38 +17,32 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
     // Using Setter and Getter
 
-    // create a private property
-    private _listFilter: string;
+    // // create a private property
+    // private _listFilter: string;
 
-    // create a Getter propery
-    get listFilter(): string {
-      return this._listFilter;
-    }
+    // // create a Getter propery
+    // get listFilter(): string {
+    //   return this._listFilter;
+    // }
 
-    // create a Setter property
-    set listFilter(valueToSet: string) {
-      this._listFilter = valueToSet;
-      this.performFilter(this.listFilter);
-    }
-
-    @ViewChild('filterElement', {}) filterElementRef: ElementRef;
+    // // create a Setter property
+    // set listFilter(valueToSet: string) {
+    //   this._listFilter = valueToSet;
+    //   this.performFilter(this.listFilter);
+    // }
 
     filteredProducts: IProduct[];
     products: IProduct[];
 
     constructor(private productService: ProductService) { }
 
-    ngAfterViewInit(): void {
-      if (this.filterElementRef.nativeElement) {
-        this.filterElementRef.nativeElement.focus();
-      }
-    }
+
 
     ngOnInit(): void {
         this.productService.getProducts().subscribe(
             (products: IProduct[]) => {
                 this.products = products;
-                this.performFilter(this.listFilter);
+                this.performFilter();
             },
             (error: any) => this.errorMessage = <any>error
         );
