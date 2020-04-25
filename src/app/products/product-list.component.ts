@@ -9,12 +9,27 @@ import { ProductService } from './product.service';
 })
 export class ProductListComponent implements OnInit {
     pageTitle: string = 'Product List';
-    listFilter: string;
     showImage: boolean;
 
     imageWidth: number = 50;
     imageMargin: number = 2;
     errorMessage: string;
+
+    // Using Setter and Getter
+
+    // create a private property
+    private _listFilter: string;
+
+    // create a Getter propery
+    get listFilter(): string {
+      return this._listFilter;
+    }
+
+    // create a Setter property
+    set listFilter(valueToSet: string) {
+      this._listFilter = valueToSet;
+      this.performFilter(this.listFilter);
+    }
 
     filteredProducts: IProduct[];
     products: IProduct[];
