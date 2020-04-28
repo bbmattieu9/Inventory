@@ -13,7 +13,7 @@ export class CriteriaComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() hitCount: number;
   hitCountMessage: any;
 
-  @ViewChild('filterElement', {}) filterElementRef: ElementRef;
+  @ViewChild('filterElement') filterElementRef: ElementRef;
 
   constructor() { }
 
