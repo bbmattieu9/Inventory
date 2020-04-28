@@ -9,7 +9,8 @@
           <pm-criteria class="col-md-6"
                         #filterCriteria
                         [displayDetail]='includeDetail'
-                        [hitCount]='filteredProducts?.length'>
+                        [hitCount]='filteredProducts?.length'
+                        (valueChanges)="onValueChange($event)">
           </pm-criteria>
         </div>
 

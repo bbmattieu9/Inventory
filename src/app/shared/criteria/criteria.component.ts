@@ -1,4 +1,8 @@
-import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit,
+  ElementRef, ViewChild,
+  AfterViewInit, Input,
+  OnChanges, SimpleChanges,
+  EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'pm-criteria',
@@ -7,15 +11,27 @@ import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, Input, OnChang
 })
 export class CriteriaComponent implements OnInit, OnChanges, AfterViewInit {
 
-  listFilter: string;
+  // listFilter: string;
 
   @Input() displayDetail: boolean;
   @Input() hitCount: number;
   hitCountMessage: any;
+  @Output() valueChanges: EventEmitter<string> = new EventEmitter<string>();
 
   @ViewChild('filterElement') filterElementRef: ElementRef;
 
   constructor() { }
+
+  private _listFilter: string;
+
+  get listFilter(): string {
+    return this._listFilter;
+  }
+
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.valueChanges.emit(this._listFilter );
+  }
 
 
   ngAfterViewInit(): void {
@@ -25,18 +41,16 @@ export class CriteriaComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-      // if (changes['hitCount'] && !changes['hitCount'].currentValue) {
-      //   return  this.hitCountMessage = 'No Match Found';
-      //  }
-      //   return this.hitCountMessage = `Found ${this.hitCount} product(s)`;
+    // if (changes['hitCount'] && !changes['hitCount'].currentValue) {
+    //   return  this.hitCountMessage = 'No Match Found';
+    //  }
+    //   return this.hitCountMessage = `Found ${this.hitCount} product(s)`;
 
-      changes['hitCount'] && !changes['hitCount'].currentValue
+    changes['hitCount'] && !changes['hitCount'].currentValue
       ?
       this.hitCountMessage = 'No Match Found'
       :
       this.hitCountMessage = `Found ${this.hitCount} product(s)`;
-
-
   }
 
 
