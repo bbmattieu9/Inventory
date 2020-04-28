@@ -8,8 +8,9 @@
              [(ngModel)]='listFilter' />
   </div> -->
 </div>
-<div class='row' [hidden]='!listFilter'>
+<div class='row' *ngIf="displayDetail">
   <div class='col-md-10'>
-      <h6 class="text-mute">Filtered by: {{listFilter}} </h6>
+      <h6 class="text-mute">Filtered by: {{listFilter}}</h6>
+      <h6 class="text-mute"> Found: {{ hitCount }} product(s)</h6>
   </div>
 </div>
