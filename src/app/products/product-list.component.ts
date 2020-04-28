@@ -11,6 +11,8 @@ export class ProductListComponent implements OnInit {
     pageTitle: string = 'Product List';
     showImage: boolean;
 
+    includeDetail: boolean = true;
+
     imageWidth: number = 50;
     imageMargin: number = 2;
     errorMessage: string;
@@ -54,8 +56,7 @@ export class ProductListComponent implements OnInit {
         if (filterBy) {
             this.filteredProducts = this.products.filter((product: IProduct) =>
                 product.productName.toLocaleLowerCase().indexOf(filterBy.toLocaleLowerCase()) !== -1);
-        } else {
-            this.filteredProducts = this.products;
         }
+          this.filteredProducts = this.products;
     }
 }
