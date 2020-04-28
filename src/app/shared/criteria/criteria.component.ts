@@ -18,9 +18,6 @@ export class CriteriaComponent implements OnInit, AfterViewInit {
     }
   }
 
-  checkGitCommit(cmtStmt?: string) {
-    console.warn(`Method not yet implmented!`);
-  }
 
   ngOnInit() {
   }
