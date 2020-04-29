@@ -12,6 +12,8 @@ export class ProductShellListComponent implements OnInit {
   errorMessage: string;
   products: IProduct[];
 
+  selectedProduct: IProduct | null;
+
   constructor(private productService: ProductService) { }
 
   onSelected(product: IProduct) {
@@ -19,6 +21,10 @@ export class ProductShellListComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.productService.selectedProductChanges$.subscribe(
+      selectedProduct => this.selectedProduct = selectedProduct
+    );
+
     this.productService.getProducts().subscribe(
       (products: IProduct[]) => {
         this.products = products;
