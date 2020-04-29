@@ -13,12 +13,24 @@ import { IProduct } from './product';
 export class ProductService {
     private productsUrl = 'api/products';
 
+    // Create a variable for the State Management Service Pattern
+    // Make it a private property, as we only want to access it here
+    private products: IProduct[];
+
+    // We can add another property to track time for expiry for ${this.products}
+    // e.g
+    // private productsTracker: number;
+
     constructor(private http: HttpClient) { }
 
     getProducts(): Observable<IProduct[]> {
+      if (this.products) {
+        return of(this.products);
+      }
         return this.http.get<IProduct[]>(this.productsUrl)
                         .pipe(
                             tap(data => console.log(JSON.stringify(data))),
+                            tap(data => this.products = data),
                             catchError(this.handleError)
                         );
     }
@@ -26,6 +38,12 @@ export class ProductService {
     getProduct(id: number): Observable<IProduct> {
         if (id === 0) {
             return of(this.initializeProduct());
+        }
+        if (this.products) {
+          const foundItem = this.products.find(item => item.id === id);
+          if (foundItem) {
+            return of(foundItem);
+          }
         }
         const url = `${this.productsUrl}/${id}`;
         return this.http.get<IProduct>(url)
