@@ -15,7 +15,7 @@ export class ProductShellListComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   onSelected(product: IProduct) {
-    this.productService.currentProduct = product;
+    this.productService.changeSelectedProduct(product);
    }
 
   ngOnInit(): void {
