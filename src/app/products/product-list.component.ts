@@ -21,6 +21,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   @ViewChild(CriteriaComponent) filterComponent: CriteriaComponent;
   parentListFilter: string;
 
+
   // Using Setter and Getter
 
   // // create a private property
@@ -65,7 +66,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     this.productService.getProducts().subscribe(
       (products: IProduct[]) => {
         this.products = products;
-        this.performFilter(this.parentListFilter);
+         this.filterComponent.listFilter =  this.productParameterService.filterBy;
       },
       (error: any) => this.errorMessage = <any>error
     );
@@ -73,7 +74,8 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
 
   onValueChange(value: string) {
-    this.performFilter(value);
+    this.productParameterService.filterBy = value;
+    this.performFilter(this.productParameterService.filterBy);
   }
 
   toggleImage(): void {

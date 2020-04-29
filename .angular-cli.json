@@ -19,8 +19,9 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "pm",
       "styles": [
-        "styles.css",
-        "../node_modules/bootstrap/dist/css/bootstrap.css"
+        "../node_modules/bootstrap/dist/css/bootstrap.css",
+        "../node_modules/@fortawesome/fontawesome-free/css/fontawesome.css",
+        "styles.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
