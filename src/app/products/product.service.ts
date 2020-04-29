@@ -17,6 +17,10 @@ export class ProductService {
     // Make it a private property, as we only want to access it here
     private products: IProduct[];
 
+    // Create a property for currentProduct
+    // Using union type to assign a type for the currentProduct
+    currentProduct: IProduct | null;
+
     // We can add another property to track time for expiry for ${this.products}
     // e.g
     // private productsTracker: number;
@@ -72,6 +76,7 @@ export class ProductService {
                               const foundIndex = this.products.findIndex(item => item.id === id);
                               if (foundIndex > -1) {
                                   this.products.splice(foundIndex, 1);
+                                  this.currentProduct = null;
                                }
                             }),
                             catchError(this.handleError)
@@ -82,7 +87,10 @@ export class ProductService {
         product.id = null;
         return this.http.post<IProduct>(this.productsUrl, product,  { headers: headers} )
                         .pipe(
-                            tap(data => this.products.push(data)),
+                            tap(data =>  {
+                              this.products.push(data);
+                              this.currentProduct = data;
+                            }),
                             tap(data => console.log('createProduct: ' + JSON.stringify(data))),
                             catchError(this.handleError)
                         );
