@@ -8,6 +8,7 @@ import { of } from 'rxjs/observable/of';
 import { catchError, tap } from 'rxjs/operators';
 
 import { IProduct } from './product';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class ProductService {
@@ -19,13 +20,22 @@ export class ProductService {
 
     // Create a property for currentProduct
     // Using union type to assign a type for the currentProduct
-    currentProduct: IProduct | null;
+    // currentProduct: IProduct | null;
+
+
+    // Using Observable
+    private selectedProductSource = new Subject<IProduct | null>();
+    selectedProductChanges$ = this.selectedProductSource.asObservable();
 
     // We can add another property to track time for expiry for ${this.products}
     // e.g
     // private productsTracker: number;
 
     constructor(private http: HttpClient) { }
+
+    changeSelectedProduct(selectedProduct: IProduct | null): void {
+      this.selectedProductSource.next(selectedProduct);
+    }
 
     getProducts(): Observable<IProduct[]> {
       if (this.products) {
@@ -76,7 +86,7 @@ export class ProductService {
                               const foundIndex = this.products.findIndex(item => item.id === id);
                               if (foundIndex > -1) {
                                   this.products.splice(foundIndex, 1);
-                                  this.currentProduct = null;
+                                  this.changeSelectedProduct(null);
                                }
                             }),
                             catchError(this.handleError)
@@ -89,7 +99,7 @@ export class ProductService {
                         .pipe(
                             tap(data =>  {
                               this.products.push(data);
-                              this.currentProduct = data;
+                              this.changeSelectedProduct(data);
                             }),
                             tap(data => console.log('createProduct: ' + JSON.stringify(data))),
                             catchError(this.handleError)
