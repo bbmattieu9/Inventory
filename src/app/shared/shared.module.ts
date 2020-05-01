@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { StarComponent } from './star.component';
 import { CriteriaComponent } from './criteria/criteria.component';
+import { AuctionsComponent } from './auctions/auctions.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { CriteriaComponent } from './criteria/criteria.component';
   ],
   declarations: [
     StarComponent,
-    CriteriaComponent
+    CriteriaComponent,
+    AuctionsComponent
   ],
   exports: [
     StarComponent,
