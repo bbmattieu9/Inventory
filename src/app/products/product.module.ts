@@ -13,6 +13,7 @@ import { ProductParameterService } from './product-parameter.service';
 import { ProductShellComponent } from './product-shell/product-shell.component';
 import { ProductShellListComponent } from './product-shell/product-shell-list.component';
 import { ProductShellDetailComponent } from './product-shell/product-shell-detail.component';
+import { ProductReviewComponent } from './product-review/product-review.component';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { ProductShellDetailComponent } from './product-shell/product-shell-detai
     ProductEditComponent,
     ProductShellComponent,
     ProductShellListComponent,
-    ProductShellDetailComponent
+    ProductShellDetailComponent,
+    ProductReviewComponent
   ],
   providers: [
     ProductService,
