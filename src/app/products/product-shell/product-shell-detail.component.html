@@ -1,4 +1,4 @@
-<div class='class' *ngIf='product'>
+<div class='card' *ngIf='product'>
 
         <div class="card-header bg-purple box-shadow">
           <h6 class="mb-0 text-white lh-100">Product Detail: {{product.productName}}</h6>
@@ -9,15 +9,15 @@
                 <div class='col-md-6'>
                     <div class='row'>
                         <div class='col-md-3'>Name:</div>
-                        <div class='col-md-6'>{{product.productName}}</div>
+                        <div class='col-md-7'>{{product.productName}}</div>
                     </div>
                     <div class='row'>
                         <div class='col-md-3'>Code:</div>
-                        <div class='col-md-6'>{{product.productCode}}</div>
+                        <div class='col-md-7'>{{product.productCode}}</div>
                     </div>
                     <div class='row'>
                         <div class='col-md-3'>Description:</div>
-                        <div class='col-md-6'>{{product.description}}</div>
+                        <div class='col-md-7'>{{product.description}}</div>
                     </div>
                     <div class='row'>
                         <div class='col-md-3'>Availability:</div>
@@ -36,7 +36,7 @@
                     </div>
                 </div>
 
-                <div class='col-md-6'>
+                <div class='col-md-4'>
                     <img *ngIf='product.imageUrl'
                          class='center-block img-responsive'
                          [style.width.px]='200'
@@ -47,7 +47,7 @@
             </div>
         </div>
 
-        <div class='panel-footer'>
+        <div class='card-footer'>
             <a class="btn btn-primary" style="width:80px" [routerLink]="['/products', product.id, 'edit']">
                 Edit
             </a>
