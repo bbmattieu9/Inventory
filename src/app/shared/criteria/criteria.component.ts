@@ -11,7 +11,6 @@ import { Component, OnInit,
 })
 export class CriteriaComponent implements OnInit, OnChanges, AfterViewInit {
 
-  // listFilter: string;
 
   @Input() displayDetail: boolean;
   @Input() hitCount: number;
